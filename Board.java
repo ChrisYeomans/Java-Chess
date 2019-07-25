@@ -42,4 +42,8 @@ public class Board {
 		}
 		System.out.println("\n");
 	}
+
+	public void move_piece(String start, String end) {
+		
+	}
 }
