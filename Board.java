@@ -1,10 +1,13 @@
 import Pieces.*;
+import java.util.*;
 
 public class Board {
-	/*The Board is just a 2D array of Pieces and also
+	/*
+	The Board is just a 2D array of Pieces and also
 	acts as a translation layer between array coordinates
 	and chess coordinates and also has methods to make changes
-	which will be called by the Game() object.*/
+	which will be called by the Game() object.
+	*/
 	Piece[][] layout = {
 		{new Filler("H1"), new Filler("H2"), new Filler("H3"), new Filler("H4"), new Filler("H5"), new Filler("H6"), new Filler("H7"), new Filler("H8")},
 		{new Filler("G1"), new Filler("G2"), new Filler("G3"), new Filler("G4"), new Filler("G5"), new Filler("G6"), new Filler("G7"), new Filler("G8")},
@@ -15,6 +18,7 @@ public class Board {
 		{new Filler("B1"), new Filler("B2"), new Filler("B3"), new Filler("B4"), new Filler("B5"), new Filler("B6"), new Filler("B7"), new Filler("B8")},
 		{new Filler("A1"), new Filler("A2"), new Filler("A3"), new Filler("A4"), new Filler("A5"), new Filler("A6"), new Filler("A7"), new Piece("A8")}
 	};
+	HashMap<String, Integer> get_row = new HashMap<String, Integer>();
 
 	public Board() {
 		Piece[][] layout = {
@@ -28,6 +32,10 @@ public class Board {
 			{new Rook("B1", "white"), new Bishop("B2", "white"), new Knight("B3", "white"), new Queen("B4", "white"), new King("B5", "white"), new Knight("B6", "white"), new Bishop("B7", "white"), new Rook("B8", "white")},
 		};
 		this.layout = layout;
+
+		// setting up row conversion hash map
+		this.get_row.put("A", 0); this.get_row.put("B", 1); this.get_row.put("C", 2); this.get_row.put("D", 3);
+		this.get_row.put("E", 4); this.get_row.put("F", 5); this.get_row.put("G", 6); this.get_row.put("H", 7);
 	}
 
 	public void print_board() {
@@ -43,7 +51,47 @@ public class Board {
 		System.out.println("\n");
 	}
 
+	public int[] pos_to_coords(String pos) {
+		int[] out = new int[2];
+		out[0] = (int)pos.toUpperCase().charAt(0) - (int)'A';
+		out[1] = Integer.parseInt(pos.substring(1));
+		return out;
+	}
+
+	public String coords_to_pos(int[] coords) {
+		return "out";	
+	}
+
 	public void move_piece(String start, String end) {
-		
+		int[] start_pos = this.pos_to_coords(start);
+		int[] end_pos = this.pos_to_coords(end);
+		Piece piece_to_move = this.layout[start_pos[0]][start_pos[1]];
+
+		piece_to_move.position = end;
+		this.layout[end_pos[0]][end_pos[1]] = piece_to_move;
+		this.layout[start_pos[0]][start_pos[1]] = new Filler(start);
+	}
+
+	public void draw_move_line(Piece p) {
+		/*
+		This will us a function called
+		get_move_array in each of the
+		piece objects to draw a grid that
+		shows all possible moves for a
+		particular piece.
+		*/
+		// TODO: Finish this to highlight
+		// filler squares properly.
+		//String[] move_arr = p.get_move_array();
+		System.out.println();
+		for (int i=0;i<8;i++) {
+			System.out.println("");
+			System.out.print("     ");
+			for (int j=0;j<8;j++) {
+				System.out.print(this.layout[i][j].get_symbol() + "   ");
+			}
+			System.out.println();
+		}
+		System.out.println("\n");
 	}
 }
