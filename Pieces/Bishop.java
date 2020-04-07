@@ -8,10 +8,9 @@ public class Bishop extends Piece {
 		this.setColour(colour);
 		this.isFiller = false;
 	}
-	public List<String> get_move_array() {
+	public List<String> getMoveArray() {
 		ArrayList<String> out = new ArrayList<String>();
 		out.add(this.position);
 		return out;
-
 	}
 } 
