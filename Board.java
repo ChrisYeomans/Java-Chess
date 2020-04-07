@@ -18,7 +18,7 @@ public class Board {
 		{new Filler("B1"), new Filler("B2"), new Filler("B3"), new Filler("B4"), new Filler("B5"), new Filler("B6"), new Filler("B7"), new Filler("B8")},
 		{new Filler("A1"), new Filler("A2"), new Filler("A3"), new Filler("A4"), new Filler("A5"), new Filler("A6"), new Filler("A7"), new Piece("A8")}
 	};
-	HashMap<String, Integer> get_row = new HashMap<String, Integer>();
+	HashMap<String, Integer> getRow = new HashMap<String, Integer>();
 
 	public Board() {
 		Piece[][] layout = {
@@ -34,45 +34,45 @@ public class Board {
 		this.layout = layout;
 
 		// setting up row conversion hash map
-		this.get_row.put("A", 0); this.get_row.put("B", 1); this.get_row.put("C", 2); this.get_row.put("D", 3);
-		this.get_row.put("E", 4); this.get_row.put("F", 5); this.get_row.put("G", 6); this.get_row.put("H", 7);
+		this.getRow.put("A", 0); this.getRow.put("B", 1); this.getRow.put("C", 2); this.getRow.put("D", 3);
+		this.getRow.put("E", 4); this.getRow.put("F", 5); this.getRow.put("G", 6); this.getRow.put("H", 7);
 	}
 
-	public void print_board() {
+	public void printBoard() {
 		System.out.println();
 		for (int i=0;i<8;i++) {
 			System.out.println("");
 			System.out.print("     ");
 			for (int j=0;j<8;j++) {
-				System.out.print(this.layout[i][j].get_symbol() + "   ");
+				System.out.print(this.layout[i][j].getSymbol() + "   ");
 			}
 			System.out.println();
 		}
 		System.out.println("\n");
 	}
 
-	public int[] pos_to_coords(String pos) {
+	public int[] posToCoords(String pos) {
 		int[] out = new int[2];
 		out[0] = (int)pos.toUpperCase().charAt(0) - (int)'A';
 		out[1] = Integer.parseInt(pos.substring(1));
 		return out;
 	}
 
-	public String coords_to_pos(int[] coords) {
+	public String coordsToPos(int[] coords) {
 		return "out";	
 	}
 
 	public void move_piece(String start, String end) {
-		int[] start_pos = this.pos_to_coords(start);
-		int[] end_pos = this.pos_to_coords(end);
-		Piece piece_to_move = this.layout[start_pos[0]][start_pos[1]];
+		int[] startPos = this.posToCoords(start);
+		int[] endPos = this.posToCoords(end);
+		Piece pieceToMove = this.layout[startPos[0]][startPos[1]];
 
-		piece_to_move.position = end;
-		this.layout[end_pos[0]][end_pos[1]] = piece_to_move;
-		this.layout[start_pos[0]][start_pos[1]] = new Filler(start);
+		pieceToMove.position = end;
+		this.layout[endPos[0]][endPos[1]] = pieceToMove;
+		this.layout[startPos[0]][startPos[1]] = new Filler(start);
 	}
 
-	public void draw_move_line(Piece p) {
+	public void drawMoveLine(Piece p) {
 		/*
 		This will us a function called
 		get_move_array in each of the

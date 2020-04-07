@@ -4,9 +4,9 @@ public class Piece {
 	public String symbol;
 	public String position;
 
-	public boolean is_black;
-	public boolean is_white;
-	public boolean is_filler;
+	public boolean isBlack;
+	public boolean isWhite;
+	public boolean isFiller;
 
 	public Piece(String symbol, String position, String colour) {
 		// r = rook, b = bishop, n = knight, q = queen, k = king, p = pawn, o = filler
@@ -14,42 +14,42 @@ public class Piece {
 		this.position = position;
 
 		if (colour == "black") {
-			this.is_black = true;
+			this.isBlack = true;
 		} else {
-			this.is_black = false;
+			this.isBlack = false;
 		}
-		this.is_white = !this.is_black;
+		this.isWhite = !this.isBlack;
 
-		this.is_filler = false;
+		this.isFiller = false;
 	}
 
 	public Piece(String position) {
-		this.is_filler = true;
+		this.isFiller = true;
 		this.position = position;
 
-		this.is_black = false;
-		this.is_white = false;
+		this.isBlack = false;
+		this.isWhite = false;
 		this.symbol = "O";
 	}
 
 	public Piece() {} // empty constructor
 
-	public String get_symbol() {
-		if (!this.is_black) {
+	public String getSymbol() {
+		if (!this.isBlack) {
 			return this.symbol.toLowerCase(); // white is lower case
 		} else {
 			return this.symbol.toUpperCase();
 		}
 	}
 
-	public void set_colour(String colour) {
+	public void setColour(String colour) {
 		if (colour == "black") {
-			this.is_black = true;
+			this.isBlack = true;
 		} else {
-			this.is_black = false;
+			this.isBlack = false;
 		}
-		this.is_white = !this.is_black;
+		this.isWhite = !this.isBlack;
 
-		this.is_filler = false;
+		this.isFiller = false;
 	}
 }

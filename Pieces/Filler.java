@@ -4,10 +4,10 @@ public class Filler extends Piece {
 
 	public Filler(String position) {
 		this.position = position;
-		this.is_filler = true;
+		this.isFiller = true;
 
-		this.is_black = false;
-		this.is_white = false;
+		this.isBlack = false;
+		this.isWhite = false;
 
 		this.symbol = "O";
 	}

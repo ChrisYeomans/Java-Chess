@@ -5,7 +5,7 @@ public class Game {
 
 	public Game() {
 		this.board = new Board();
-		this.board.print_board();
+		this.board.printBoard();
 	}
 	
 }
