@@ -1,4 +1,5 @@
 package Chess;
+import java.util.*;
 
 public class Piece {
 	public String symbol;
@@ -10,6 +11,8 @@ public class Piece {
 
 	public Board board;
 
+	public ArrayList<String> moveArray;
+
 	public Piece() {}
 
 	public String getSymbol() {
@@ -20,5 +23,10 @@ public class Piece {
 		this.isBlack = colour == "black";
 		this.isWhite = !this.isBlack;
 		this.isFiller = false;
+	}
+
+	public ArrayList<String> getMoveArray() {
+		ArrayList<String> out = new ArrayList<String>();
+		return out;
 	}
 }

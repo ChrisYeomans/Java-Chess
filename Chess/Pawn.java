@@ -12,23 +12,27 @@ public class Pawn extends Piece {
 		this.isFiller = false;
 	}
 
-	public List<String> getMoveArray() {
+	public ArrayList<String> getMoveArray() {
+		// TODO: Add en passent
+		// TODO: Add diagonal piece taking
 		ArrayList<String> out = new ArrayList<String>();
 		if (position == startPosition) {
 			if (this.isBlack) {
-				out.add(this.position.charAt(0)
-					+ Integer.toString((int)this.position.charAt(1)-2));
+				out.add(Character.toString(this.position.charAt(0))
+					+ Character.toString((char)((int)this.position.charAt(1)-2)));
 			} else {
-				out.add(this.position.charAt(0)
-					+ Integer.toString((int)this.position.charAt(1)+2));
+				out.add(Character.toString(this.position.charAt(0))
+					+ Character.toString((char)((int)this.position.charAt(1)+2)));
 			}
 		}
 		if (this.isBlack) {
-			out.add(this.position.charAt(0)
-				+ Integer.toString((int)this.position.charAt(1)-1));
+			out.add(Character.toString(this.position.charAt(0))
+				+ Character.toString((char)((int)this.position.charAt(1)-1)));
 		} else {
-			out.add(this.position.charAt(0)
-				+ Integer.toString((int)this.position.charAt(1)+1));
+			out.add(Character.toString(this.position.charAt(0))
+				+ Character.toString((char)((int)this.position.charAt(1)+1)));
 		}
+		this.moveArray = out;
+		return out;
 	}
 } 
